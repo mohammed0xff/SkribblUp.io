@@ -9,6 +9,9 @@ This game was built using the following technologies:
 - SignalR : A library for building real-time web applications.
 - HTML and CSS: The languages used for creating the user interface and styling the game.
 
+## Demo Video
+[![Demo Video](https://i.vimeocdn.com/video/1666954036-73f51a3b4260462290d3b61a9ceb33118ad3c7de5157e889859f0fdf87b206bb-d?mw=1200&mh=645&q=70)](https://vimeo.com/manage/videos/824841261)
+
 ## How To Play
 1. Navigate to the game in your web browser by visiting `http://localhost:5000`.
 2. Enter your username and choose a room then click "Join Room".
