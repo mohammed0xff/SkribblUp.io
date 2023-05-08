@@ -156,7 +156,7 @@ public async Task SendMessage(User user, string message)
 ```
 
 6. As client code listens on `ReceiveMessage`
-```js0
+```js
 connection.on(ListeningMethods.ReceiveMessage, ({username, content}) => {
   this.setState(prevState => ({
     messages : [...prevState.messages, { username, content}] 
