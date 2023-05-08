@@ -169,5 +169,15 @@ connection.on(ListeningMethods.ReceiveMessage, ({username, content}) => {
 ## Contributing
 If you'd like to contribute, feel free to submit a pull request!
 
+#### upcomming features
+* Backend : 
+  - [ ] sending errors to client.
+  - [ ] announcing winners.
+  
+* Frontend : at this point the game only features simple line drawing so in order to improve the drawing experience i will add to color paddle: 
+  - [ ] brush sizing.
+  - [ ] eraser (actually, we just turn the drawing color white 😀).
+  - [ ] fill tool 
+
 ## License
-This game is licensed under the [Insert License Here] license. See `LICENSE.md` for more information.
+This game is licensed under the MIT license. See `LICENSE.md` for more information.
