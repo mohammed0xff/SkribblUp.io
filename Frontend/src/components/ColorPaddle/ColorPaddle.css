@@ -1,0 +1,88 @@
+.color-paddle {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding-left: 10px ; 
+  padding-right: 10px ; 
+  margin-top: 0px;
+  margin-left: 170px;
+  align-items: center;
+  border-radius: 5px;
+  display: flex ; 
+  flex-direction : 'raw';
+}
+
+.color-box {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;    
+  margin: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.color-btn {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex ; 
+  flex-direction : 'raw';
+}
+
+.color-box.selected {
+  border: 2px solid #000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+}
+
+.color-circle {
+  background-color: #4c6ef5;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.color-circle.selected {
+  box-shadow: 0px 0px 5px black;
+}
+
+.clear-btn {
+  position: inherit;
+  margin-left: 30px;
+  width: 60px;
+  height: 35px;
+  border-radius: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3E60AA;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+}
+
+.clear-btn:hover {
+  background-color: #933328;
+}
+
+.clear-btn i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.clear-btn span {
+  font-weight: bold;
+}
+
+.custom-color-btn{
+  padding-right: 20px;
+  border: 5px !important;
+  background-color: transparent !important;
+  outline: none !important;
+  width: 60px;
+  height: 35px;
+}

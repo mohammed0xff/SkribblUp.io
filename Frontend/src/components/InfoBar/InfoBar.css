@@ -1,0 +1,26 @@
+.info-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: #ffffff;
+  padding: 0 20px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+  
+.room-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+  
+.word-hint {
+  letter-spacing: .2rem;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.timer {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff5a5f;
+}

@@ -1,0 +1,25 @@
+.chat {
+    display: grid;
+    padding-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 550px;
+}
+
+.user-message {
+    text-align: right;
+    padding-right: 5px;
+    font-size: 18px;
+}
+
+.from-user {
+    font-size: small;
+    margin-bottom: 3px;
+    margin-right: 5px;
+}
+
+
+.send-button{
+    border-radius: 0, 50px, 50px, 0;
+}

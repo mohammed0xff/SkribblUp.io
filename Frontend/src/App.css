@@ -1,0 +1,13 @@
+.background {
+    background-image: url(./assets/bg.jpg);
+    background-repeat: repeat;
+    height: 100vh;
+}
+
+.leave-room-btn{
+    margin-top: 10px;
+    margin-left: 50px;
+    align-self: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  
+  }

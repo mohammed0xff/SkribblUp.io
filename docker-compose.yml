@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+
+  # server 
+  signalr-app:
+    container_name: game_backend
+    image: backend:local
+    build:
+      context: Backend/
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:3000
+    ports:
+      - "3000:3000"
+
+  # web client 
+  react-app:
+    container_name: game_frontend
+    image: frontend:local
+    build:
+      context: Frontend/
+      dockerfile: Dockerfile
+    depends_on:
+      - "signalr-app"
+    ports:
+      - "5000:5000"

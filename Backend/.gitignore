@@ -1,0 +1,35 @@
+# Build output
+bin/
+obj/
+
+# .NET Core
+*.dll
+*.exe
+*.pdb
+*.user
+*.vscode
+*.vs
+*.suo
+*.cache
+*.log
+*.bak
+*.nupkg
+project.lock.json
+artifacts/
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+*.userprefs
+*.usertasks
+*.csproj.user
+*.sln.docstates
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+**/project.lock.json
+**/*.nuget.targets
+**/*.nuget.props

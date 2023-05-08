@@ -1,0 +1,33 @@
+.joinForm{
+  background-color: aqua;
+  padding: 20px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.room-btns-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.room-btn {
+  margin-right: 10px;
+}
+
+.submit-btn-container {
+  display: flex;
+  justify-content: center;
+}
