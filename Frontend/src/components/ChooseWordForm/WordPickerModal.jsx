@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 
-import { ListeningMethods, InvokeMethods } from "../../constants";
+import { CLIENT_METHODS, HUB_METHODS } from "../../constants";
 import "./WordPickerModal.css";
 
 class WordPickerModal extends Component {
@@ -16,7 +16,7 @@ class WordPickerModal extends Component {
   componentDidMount() {
     const { connection } = this.props;
     try {
-      connection.on(ListeningMethods.ChooseWord, (words) => {
+      connection.on(CLIENT_METHODS.ChooseWord, (words) => {
         
         setTimeout(() => {
           this.setState({ words, isOpen : true })
@@ -35,7 +35,7 @@ class WordPickerModal extends Component {
   chooseWordHandler = async (word) => {
     const { connection } = this.props;
     try {
-      await connection.invoke(InvokeMethods.PickAWord, word);
+      await connection.invoke(HUB_METHODS.PickAWord, word);
       this.setState({ isOpen : false });
     } catch (error) {
       console.log(error);
@@ -64,9 +64,10 @@ class WordPickerModal extends Component {
             <h1>choose a word</h1>
           </div>
           <div className="body">
-            {words.map((word) => {
+            {words.map((word, idx) => {
               return (
                 <Button
+                  key={idx}
                   className="word-button"
                   variant="success"
                   onClick={() => this.chooseWordHandler(word)}

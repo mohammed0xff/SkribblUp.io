@@ -5,7 +5,7 @@ import MessageContainer from './MessageContainer/MessageContainer';
 
 import "./Chat.css"
 
-import { InvokeMethods, ListeningMethods, Mods, RoomUserActions } from '../../constants';
+import { HUB_METHODS, CLIENT_METHODS, MODS, USER_ACTIONS } from '../../constants';
 
 class Chat extends Component {
   constructor(props) {
@@ -20,36 +20,36 @@ class Chat extends Component {
     const { connection } = this.props;
     
     try{
-      connection.on(ListeningMethods.ReceiveMessage, ({username, content}) => {
+      connection.on(CLIENT_METHODS.ReceiveMessage, ({username, content}) => {
           this.setState(prevState => ({
             messages : [...prevState.messages, { username, content}] 
           }));
       });
 
-      connection.on(ListeningMethods.UserAction, ({user, actionType})=>{
+      connection.on(CLIENT_METHODS.UserAction, ({user, actionType})=>{
         let message = ""; 
           
         switch (actionType) {
-          case RoomUserActions.UserJoined:
+          case USER_ACTIONS.UserJoined:
             message = `${user.userName} Joined the room.`;
             break;
             
-          case RoomUserActions.UserLeft:
+          case USER_ACTIONS.UserLeft:
             message = `${user.userName} Left the room.`;
             break;
     
-          case RoomUserActions.UserDisconnected:
+          case USER_ACTIONS.UserDisconnected:
             message = `${user.userName} Disconnected.`;
             break;
     
-          case RoomUserActions.UserGuessed:
+          case USER_ACTIONS.UserGuessed:
             message = `${user.userName} Guessed the word!`;
             break;
 
-          case RoomUserActions.ChoosingWord:
+          case USER_ACTIONS.ChoosingWord:
             message = `${user.userName} Choosing a word.`;
             break;
-          case RoomUserActions.DrawingNow:
+          case USER_ACTIONS.DrawingNow:
             message = `${user.userName} Got the pen.`;
             break;
             
@@ -60,7 +60,7 @@ class Chat extends Component {
         this.addBotMessage(message);
       })
 
-      connection.on(ListeningMethods.RevealWord, (word) => {
+      connection.on(CLIENT_METHODS.RevealWord, (word) => {
         let message = `Word was ${word}!`
         this.addBotMessage(message);
       });
@@ -72,13 +72,13 @@ class Chat extends Component {
   
   addBotMessage(message){
     this.setState(prevState => ({
-      messages : [...prevState.messages, { username : Mods.Bot, content : message}] 
+      messages : [...prevState.messages, { username : MODS.Bot, content : message}] 
     }));
   }
 
   sendMessage = async (message) => {
     try {
-      await this.props.connection.invoke(InvokeMethods.SendMessage, message);
+      await this.props.connection.invoke(HUB_METHODS.SendMessage, message);
     } catch (e) {
       console.log(e);
     }

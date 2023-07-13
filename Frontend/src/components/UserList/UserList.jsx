@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InvokeMethods, ListeningMethods, RoomUserActions } from '../../constants';
+import { HUB_METHODS, CLIENT_METHODS, USER_ACTIONS } from '../../constants';
 import './UserList.css';
 
 class UserList extends Component {
@@ -17,21 +17,21 @@ class UserList extends Component {
   setupCallbacks() {
     const { connection} = this.props;
     try {
-      connection.on(ListeningMethods.UsersInRoom, (users) => {
+      connection.on(CLIENT_METHODS.UsersInRoom, (users) => {
         this.setState({ userList: users });
       });
 
-      connection.on(ListeningMethods.NewTurn, () => {
+      connection.on(CLIENT_METHODS.NewTurn, () => {
         this.resetUsers();
       });
-      connection.on(ListeningMethods.UserAction, ({ user, actionType }) => {
+      connection.on(CLIENT_METHODS.UserAction, ({ user, actionType }) => {
         this.handleUserActions(user, actionType);
       });
       connection.onclose((e) => {
         this.setState({ userList: [] });
       });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -41,23 +41,23 @@ class UserList extends Component {
 
   getUsersInRoom = async () => {
     try {
-      await this.props.connection.invoke(InvokeMethods.GetUsersInRoom, this.props.roomName);
-    } catch (error) {
-      console.log(error);
+      await this.props.connection.invoke(HUB_METHODS.GetUsersInRoom, this.props.roomName);
+    } catch (err) {
+      console.error(err);
     }
   }
 
   handleUserActions = (user, action) => {
     switch (action) {
-      case RoomUserActions.UserJoined:
+      case USER_ACTIONS.UserJoined:
         this.addUser(user);
         break;
 
-      case RoomUserActions.UserDisconnected || RoomUserActions.UserLeft:
+      case USER_ACTIONS.UserDisconnected || USER_ACTIONS.UserLeft:
         this.removeUser(user);
         break;
 
-      case RoomUserActions.UserGuessed:
+      case USER_ACTIONS.UserGuessed:
         this.markUserAsGuessed(user);
         break;
 

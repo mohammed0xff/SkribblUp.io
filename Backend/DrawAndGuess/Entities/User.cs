@@ -5,7 +5,7 @@ namespace DrawAndGuess.Entities
     public class User
     {
         [JsonIgnore]
-        public string ConnectionId { get; set; }
+        public string ConnectionId { get; init; }
         public string? UserName { get; set;}
         public int RoomId { get; set; } = 0;
         public string RoomName { get; set; } = null!;

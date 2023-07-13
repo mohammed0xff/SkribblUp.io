@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { ListeningMethods } from "../../constants";
+import { CLIENT_METHODS } from "../../constants";
 import './InfoBar.css';
 
 class InfoBar extends Component {
@@ -14,16 +14,16 @@ class InfoBar extends Component {
     };
     try {
       const connection = props.connection;
-      connection.on(ListeningMethods.WordHint, (hint) => {
+      connection.on(CLIENT_METHODS.WordHint, (hint) => {
         this.setState({ hint });
       });
-      connection.on(ListeningMethods.StartTimer, (minutes) => {
+      connection.on(CLIENT_METHODS.StartTimer, (minutes) => {
         this.startTimer(minutes);
       });
-      connection.on(ListeningMethods.StopTimer, () => {
+      connection.on(CLIENT_METHODS.StopTimer, () => {
         this.stopTimer();
       });
-      connection.on(ListeningMethods.RevealWord, (word) => {
+      connection.on(CLIENT_METHODS.RevealWord, (word) => {
         this.setState({hint : word})
       });
     } catch (error) {

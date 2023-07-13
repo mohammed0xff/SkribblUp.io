@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import { HubConnectionBuilder, LogLevel, HubConnectionState } from '@microsoft/signalr';
 
 import JoinForm from '../src/components/JoinForm/JoinForm';
 import Canvas from '../src/components/Canvas/Canvas';
@@ -11,7 +11,7 @@ import UserList from '../src/components/UserList/UserList';
 import WordPickerModal from './components/ChooseWordForm/WordPickerModal';
 import InfoBar from './components/InfoBar/InfoBar';
 
-import { ListeningMethods, InvokeMethods } from './constants';
+import { CLIENT_METHODS, HUB_METHODS } from './constants';
 
 import './App.css';
 
@@ -41,36 +41,39 @@ class App extends Component {
 
   async makeConnection(){
     const { connection } = this.state;
-    if( connection !== null){
+    if( connection !== null && connection.state === HubConnectionState.Connected){
       // already connected.
       return;
     }
-    console.log(this.state.connection);
     const connectionBuilder = new HubConnectionBuilder()
     .withUrl("http://localhost:3000/game")
     .configureLogging(LogLevel.Information)
     .build();
   
-    connectionBuilder.on(ListeningMethods.AvailableRooms, (rooms) => {
+    connectionBuilder.on(CLIENT_METHODS.AvailableRooms, (rooms) => {
       this.setState({ rooms })
     });
     
-    connectionBuilder.on(ListeningMethods.PickThePen, () => {
+    connectionBuilder.on(CLIENT_METHODS.PickThePen, () => {
       this.setState({ isDrawing: true });
     })
     
-    connectionBuilder.on(ListeningMethods.NewTurn, () => {
+    connectionBuilder.on(CLIENT_METHODS.NewTurn, () => {
       this.setState({ isDrawing: false });
     })
-    connectionBuilder.on(ListeningMethods.error, (error) => {
+    connectionBuilder.on(CLIENT_METHODS.Error, (error) => {
       console.error(error)
     })
     connectionBuilder.onclose(e => {
         this.setState({ connection: null, inLobby : true });
     });
 
-    await connectionBuilder.start();
-    this.setState({ connection : connectionBuilder });
+    try {
+      await connectionBuilder.start();
+      this.setState({ connection: connectionBuilder });
+    } catch (error) {
+      console.error("Error starting connection:", error);
+    }
   }
 
   setUserData = (userData) => {
@@ -79,12 +82,12 @@ class App extends Component {
 
   joinRoom = async (username, room) => {
     try {
-      this.makeConnection();
+      await this.makeConnection();
       if(this.state.connection == null){
         alert("Can't connect to server!");
         return;
       }
-      await this.state.connection.invoke(InvokeMethods.JoinRoom, { username, room });
+      await this.state.connection.invoke(HUB_METHODS.JoinRoom, { username, room });
       this.setState({ inLobby : false })
     } catch (e) {
       console.log(e);
@@ -93,7 +96,7 @@ class App extends Component {
 
   leaveRoom = async () => {
     try {
-      await this.state.connection.invoke(InvokeMethods.LeaveRoom);
+      await this.state.connection.invoke(HUB_METHODS.LeaveRoom);
       this.setState({ inLobby : true })
     } catch (e) {
       console.log(e);

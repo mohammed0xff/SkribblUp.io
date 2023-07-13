@@ -72,6 +72,18 @@ namespace DrawAndGuess.Invokers
             }
         }
 
+        public async Task SendFill(string roomName, MousePos pos)
+        {
+            try
+            {
+                await SendToGroup(roomName, ClientMethods.FillColor, pos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error sending drawing start message for room {roomName}: {ex.Message}");
+            }
+        }
+
         public async Task ClearCanvasInRoom(string roomName)
         {
             try
@@ -88,7 +100,31 @@ namespace DrawAndGuess.Invokers
         {
             try
             {
-                await SendToGroup(roomName, ClientMethods.ColorChanged, color);
+                await SendToGroup(roomName, ClientMethods.ChangeColor, color);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error sending color changed message for room {roomName}: {ex.Message}");
+            }
+        }
+
+        public async Task SendToolChangedAsync(string roomName, int toolIndex)
+        {
+            try
+            {
+                await SendToGroup(roomName, ClientMethods.SelectTool, toolIndex);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error sending color changed message for room {roomName}: {ex.Message}");
+            }
+        }
+
+        public async Task SendBrushSizeChangedAsync(string roomName, int size)
+        {
+            try
+            {
+                await SendToGroup(roomName, ClientMethods.ChangeBrushSize, size);
             }
             catch (Exception ex)
             {

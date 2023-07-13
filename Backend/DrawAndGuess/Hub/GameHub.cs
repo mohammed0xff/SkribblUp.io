@@ -62,10 +62,29 @@ namespace SignalRChat.Hubs
                 );
         }
 
+        public void FillColor(MousePos mousePos)
+        {
+            _commandProcessor.AddCommand(
+                new FillColorCommand(Context.ConnectionId) { mousePos = mousePos }
+                );
+        }
+
         public void ChangeColor(string color)
         {
             _commandProcessor.AddCommand(
                 new ChangeColorCommand(Context.ConnectionId) { NewColor = color }
+                );
+        }
+        public void SelectTool(int toolIdx)
+        {
+            _commandProcessor.AddCommand(
+                new SelectToolCommand(Context.ConnectionId) { ToolIndex = toolIdx }
+                );
+        }
+        public void ChangeBrushSize(int size)
+        {
+            _commandProcessor.AddCommand(
+                new ChangeBrushSizeCommand(Context.ConnectionId) { Size = size }
                 );
         }
 

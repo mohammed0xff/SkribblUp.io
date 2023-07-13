@@ -1,9 +1,8 @@
 .canvas-container {
   padding-left: 20px;
-  padding-top: 20px;
+  padding-top: 10px;
   width: fit-content;
   height: fit-content;
-  
 }
 
 .canvas {

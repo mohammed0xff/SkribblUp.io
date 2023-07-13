@@ -18,12 +18,15 @@
         
         // drawing 
         public static readonly string Draw = "Draw";
+        public static readonly string FillColor = "FillColor";
         public static readonly string StartDrawing = "StartDrawing";
-        public static readonly string ColorChanged = "ColorChanged";
+        public static readonly string ChangeColor = "ChangeColor";
         public static readonly string ClearCanvas = "ClearCanvas";
         public static readonly string NewTurn = "NewTurn";
         public static readonly string PickThePen = "PickThePen";
-        
+        public static readonly string SelectTool = "SelectTool";
+        public static readonly string ChangeBrushSize = "ChangeBrushSize";
+       
         // timing
         public static readonly string StopTimer = "StopTimer";
         public static readonly string StartTimer = "StartTimer";

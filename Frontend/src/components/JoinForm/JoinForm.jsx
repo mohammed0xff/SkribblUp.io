@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './JoinForm.css';
-import { ListeningMethods } from '../../constants';
+import { CLIENT_METHODS } from '../../constants';
 
 class JoinForm extends Component {
   constructor(props) {
