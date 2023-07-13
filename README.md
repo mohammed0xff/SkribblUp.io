@@ -173,11 +173,13 @@ If you'd like to contribute, feel free to submit a pull request!
 * Backend : 
   - [ ] sending errors to client.
   - [ ] announcing winners.
+  - [ ] make some commands require certain permissions or challenges before they can be executed. 
   
 * Frontend : at this point the game only features simple line drawing so in order to improve the drawing experience i will add to color paddle: 
-  - [ ] brush sizing.
-  - [ ] eraser (actually, we just turn the drawing color white 😀).
-  - [ ] fill tool 
+  - [x] brush sizing.
+  - [x] eraser (actually, we just turn the drawing color white 😀).
+  - [x] fill tool
+  - [ ] make it responsive 
 
 ## License
 This game is licensed under the MIT license. See `LICENSE.md` for more information.
