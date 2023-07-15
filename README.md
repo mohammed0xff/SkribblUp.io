@@ -1,4 +1,4 @@
-# Draw & Guess
+# SkribblUp.io
 
 A realtime browser-based drawing and guessing game, [skribbl.io](https://skribbl.io) clone.
 
@@ -26,15 +26,15 @@ This game was built using the following technologies:
 
 ### With Docker
 
-2. Clone the repository: `git clone https://github.com/mohammed0xff/draw-and-guess`
-3. Navigate to the project directory: `cd draw-and-guess`
+2. Clone the repository: `git clone https://github.com/mohammed0xff/SkribblUp.io`
+3. Navigate to the project directory: `cd SkribblUp.io`
 4. Run the Docker Compose command to build and start the containers: `docker-compose up`
 5. Open your web browser and go to `http://localhost:5000`
 
 ### Without Docker
 
 #### Backend end 
-1. Clone the repository: git clone `https://github.com/mohammed0xff/draw-and-guess`
+1. Clone the repository: git clone `https://github.com/mohammed0xff/SkribblUp.io`
 2. Navigate to the project directory: `cd Backend/DrawAndGuess`
 3. Build the project: `dotnet build`
 4. Run the project with launch settings: `dotnet run`
@@ -175,7 +175,7 @@ If you'd like to contribute, feel free to submit a pull request!
   - [ ] announcing winners.
   - [ ] make some commands require certain permissions or challenges before they can be executed. 
   
-* Frontend : at this point the game only features simple line drawing so in order to improve the drawing experience i will add to color paddle: 
+* Frontend : 
   - [x] brush sizing.
   - [x] eraser (actually, we just turn the drawing color white 😀).
   - [x] fill tool
