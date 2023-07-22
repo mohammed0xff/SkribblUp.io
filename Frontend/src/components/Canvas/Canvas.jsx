@@ -157,18 +157,19 @@ class Canvas extends Component {
     this.drawing = false;
   };
   
-  // flood fill
   fillColor = (x, y) => {
     const context = this.canvasRef.current.getContext('2d');
     const imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
     const pixelStack = [[x, y]];
+    // a set to check for already visisted pixels
+    const visited = new Set();
+    
     // y for rows(down) and x for columns(right) 
     // basically this is how to treat a 1D array as a 2D array.
     const startPixelIndex = (y * imageData.width + x) * 4; // but why *4 ??? 
     // the * 4 is because each pixel is represented by four values in the array (rgba) 
     // and each of these values takes up one byte, so there are four bytes for each pixel.
     
-    // Color of the pressed pixed.
     const startColor = {
       r: imageData.data[startPixelIndex],
       g: imageData.data[startPixelIndex + 1],
@@ -177,17 +178,23 @@ class Canvas extends Component {
     };
 
     const targetColor = this.hexToRgb(this.color);
-  
+    
     while (pixelStack.length > 0 ) {
       const [xPos, yPos] = pixelStack.pop();
       const pixelIndex = (yPos * imageData.width + xPos) * 4;
+      
+      // Skip this pixel if it's already been visited
+      if (visited.has(pixelIndex)) continue;
+      
+      visited.add(pixelIndex); 
+
       const pixelColor = {
         r: imageData.data[pixelIndex],
         g: imageData.data[pixelIndex + 1],
         b: imageData.data[pixelIndex + 2],
         a: imageData.data[pixelIndex + 3],
       };
-  
+      
       // Check if the pixel color is the same as the start color
       if (
         pixelColor.r === startColor.r &&
